@@ -26,17 +26,16 @@ namespace MS
             int F0 = Convert.ToInt32(textBox5.Text);
             int Dt = Convert.ToInt32(textBox6.Text);
 
+            int C = Convert.ToInt32(textBox7.Text);
+            int k3 = Convert.ToInt32(textBox8.Text);
+            int k4 = Convert.ToInt32(textBox9.Text);
+            int Z0 = Convert.ToInt32(textBox10.Text);
+            int Y0 = Convert.ToInt32(textBox11.Text);
+
             MessageBox.Show("Данные добавлены!");
         }
 
-        private void label7_Click(object sender, EventArgs e)
-        {
+ 
 
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
