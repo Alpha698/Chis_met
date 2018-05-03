@@ -12,6 +12,7 @@ namespace MS
 {
     public partial class Form1 : Form
     {
+        
         public Form1()
         {
             InitializeComponent();
@@ -19,38 +20,37 @@ namespace MS
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int A = Convert.ToInt32(textBox1.Text);
-            int B = Convert.ToInt32(textBox2.Text);
-            int k1 = Convert.ToInt32(textBox3.Text);
-            int k2 = Convert.ToInt32(textBox4.Text);
-            int F0 = Convert.ToInt32(textBox5.Text);
-            int Dt = Convert.ToInt32(textBox6.Text);
+            string A_ = textBox1.Text; double A = Convert.ToDouble(A_);
+            string B_ = textBox2.Text; double B = Convert.ToDouble(B_);
+            string k1_ = textBox3.Text; double k1 = Convert.ToDouble(k1_);
+            string k2_ = textBox4.Text; double k2 = Convert.ToDouble(k2_);
+            string F0_ = textBox5.Text; double F0 = Convert.ToDouble(F0_);
+            string Dt_ = textBox6.Text; double Dt = Convert.ToDouble(Dt_);
 
-            int C = Convert.ToInt32(textBox7.Text);
-            int k3 = Convert.ToInt32(textBox8.Text);
-            int k4 = Convert.ToInt32(textBox9.Text);
-            int Z0 = Convert.ToInt32(textBox10.Text);
-            int Y0 = Convert.ToInt32(textBox11.Text);
+            string C_ = textBox7.Text; double C = Convert.ToDouble(C_);
+            string k3_ = textBox8.Text; double k3 = Convert.ToDouble(k3_);
+            string k4_ = textBox9.Text; double k4 = Convert.ToDouble(k4_);
+            string Z0_ = textBox10.Text; double Z0 = Convert.ToDouble(Z0_);
+            string Y0_ = textBox11.Text; double Y0 = Convert.ToDouble(Y0_);
 
-            int a0 = Convert.ToInt32(textBox12.Text);
-            int a1 = Convert.ToInt32(textBox13.Text);
-            int a2 = Convert.ToInt32(textBox14.Text);
-            int a3 = Convert.ToInt32(textBox15.Text);
-            int a4 = Convert.ToInt32(textBox16.Text);
-            int b0 = Convert.ToInt32(textBox17.Text);
-            int b1 = Convert.ToInt32(textBox18.Text);
-            int b2 = Convert.ToInt32(textBox21.Text);
-
+            string a0_ = textBox12.Text; double a0 = Convert.ToDouble(a0_);
+            string a1_ = textBox13.Text; double a1 = Convert.ToDouble(a1_);
+            string a2_ = textBox14.Text; double a2 = Convert.ToDouble(a2_);
+            string a3_ = textBox15.Text; double a3 = Convert.ToDouble(a3_);
+            string a4_ = textBox16.Text; double a4 = Convert.ToDouble(a4_);
+            string b0_ = textBox17.Text; double b0 = Convert.ToDouble(b0_);
+            string b1_ = textBox18.Text; double b1 = Convert.ToDouble(b1_);
+            string b2_ = textBox21.Text; double b2 = Convert.ToDouble(b2_);
 
             MessageBox.Show("Данные добавлены!");
 
             // ------РАССЧЕТ ТАБЛИЦЫ------
 
             // Обьявление массивов
-            int[] arrayi = new int[21];
-            double[] arrayT = new double[21];
-            double[] arrayX = new double[21];
-            double[] arrayYa = new double[21];
+            int[] arrayi = new int[51];
+            double[] arrayT = new double[51];
+            double[] arrayX = new double[51];
+            double[] arrayYa = new double[51];
 
             //Столбец i
             for (int i = 0; i < arrayi.Length; i++)
@@ -59,22 +59,28 @@ namespace MS
             }
             //Столбец τ
             double j = 0;
-            for (int i = 0; i < arrayT.Length; i++, j += Tao)
+            for (int i = 0; i < arrayT.Length; i++, j += Dt)
             {
                 arrayT[i] = j;
-                arrayT[i] = Math.Round(arrayT[i], 4);
+                arrayT[i] = Math.Round(arrayT[i], 3);
             }
             //Столбец X
             for (int i = 0; i < arrayX.Length; i++)
             {
-                arrayX[i] = A0 + (A1 * arrayT[i]) + (A2 * Math.Pow(arrayT[i], 2)) + (A3 * Math.Pow(arrayT[i], 3)) + (A4 * Math.Pow(arrayT[i], 4));
-                arrayX[i] = Math.Round(arrayX[i], 4);
+                arrayX[i] = a0 + (a1 * arrayT[i]) + (a2 * Math.Pow(arrayT[i], 2)) + (a3 * Math.Pow(arrayT[i], 3)) + (a4 * Math.Pow(arrayT[i], 4));
+                arrayX[i] = Math.Round(arrayX[i], 3);
             }
             //Столбец Ya
-            for (int i = 0; i < arrayYa.Length; i++)
+            //for (int i = 0; i < arrayYa.Length; i++)
+            //{
+            //    arrayYa[i] = (Yo - C0) * Math.Exp(-arrayT[i] / A) + C0 + C1 * arrayT[i] + C2 * Math.Pow(arrayT[i], 2) + C3 * Math.Pow(arrayT[i], 3) + C4 * Math.Pow(arrayT[i], 4);
+            //    arrayYa[i] = Math.Round(arrayYa[i], 4);
+            //}
+
+            //Запись в таблицу
+            for (int i = 0; i < 51; i++)
             {
-                arrayYa[i] = (Yo - C0) * Math.Exp(-arrayT[i] / A) + C0 + C1 * arrayT[i] + C2 * Math.Pow(arrayT[i], 2) + C3 * Math.Pow(arrayT[i], 3) + C4 * Math.Pow(arrayT[i], 4);
-                arrayYa[i] = Math.Round(arrayYa[i], 4);
+                dataGridView1.Rows.Add(arrayi[i], arrayT[i], arrayX[i]);//, arrayYa[i], arrayY1[i], arrayY2[i], arraydY1[i], arraydY2[i], arraysY1[i] + "%", arraysY2[i] + "%");
             }
         }
 
@@ -126,8 +132,9 @@ namespace MS
         //                    // Fill = System.Windows.Media.Brushes.White
 
         //                }
+       
 
         //        };
-
+// cartesianChart1.LegendLocation = LegendLocation.Bottom;
     }
 }
