@@ -562,7 +562,7 @@
             this.cartesianChart2.BackColor = System.Drawing.SystemColors.Control;
             this.cartesianChart2.Location = new System.Drawing.Point(252, 220);
             this.cartesianChart2.Name = "cartesianChart2";
-            this.cartesianChart2.Size = new System.Drawing.Size(534, 242);
+            this.cartesianChart2.Size = new System.Drawing.Size(638, 242);
             this.cartesianChart2.TabIndex = 84;
             this.cartesianChart2.Text = "cartesianChart2";
             // 
@@ -572,7 +572,6 @@
             this.textBox20.Name = "textBox20";
             this.textBox20.Size = new System.Drawing.Size(65, 20);
             this.textBox20.TabIndex = 85;
-            this.textBox20.Text = "0";
             // 
             // textBox22
             // 
@@ -580,8 +579,6 @@
             this.textBox22.Name = "textBox22";
             this.textBox22.Size = new System.Drawing.Size(65, 20);
             this.textBox22.TabIndex = 86;
-            this.textBox22.Text = "0";
-            this.textBox22.TextChanged += new System.EventHandler(this.textBox22_TextChanged);
             // 
             // textBox23
             // 
@@ -589,7 +586,6 @@
             this.textBox23.Name = "textBox23";
             this.textBox23.Size = new System.Drawing.Size(65, 20);
             this.textBox23.TabIndex = 87;
-            this.textBox23.Text = "0";
             // 
             // textBox24
             // 
@@ -597,7 +593,6 @@
             this.textBox24.Name = "textBox24";
             this.textBox24.Size = new System.Drawing.Size(65, 20);
             this.textBox24.TabIndex = 88;
-            this.textBox24.Text = "0";
             // 
             // textBox25
             // 
@@ -605,7 +600,6 @@
             this.textBox25.Name = "textBox25";
             this.textBox25.Size = new System.Drawing.Size(65, 20);
             this.textBox25.TabIndex = 89;
-            this.textBox25.Text = "0";
             // 
             // textBox26
             // 
@@ -613,7 +607,6 @@
             this.textBox26.Name = "textBox26";
             this.textBox26.Size = new System.Drawing.Size(65, 20);
             this.textBox26.TabIndex = 90;
-            this.textBox26.Text = "0";
             // 
             // textBox27
             // 
@@ -621,7 +614,6 @@
             this.textBox27.Name = "textBox27";
             this.textBox27.Size = new System.Drawing.Size(65, 20);
             this.textBox27.TabIndex = 91;
-            this.textBox27.Text = "0";
             // 
             // label20
             // 
@@ -629,9 +621,9 @@
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label20.Location = new System.Drawing.Point(793, 15);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(26, 16);
+            this.label20.Size = new System.Drawing.Size(28, 16);
             this.label20.TabIndex = 92;
-            this.label20.Text = "F0:";
+            this.label20.Text = "D1:";
             // 
             // label21
             // 
@@ -639,9 +631,9 @@
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label21.Location = new System.Drawing.Point(793, 41);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(26, 16);
+            this.label21.Size = new System.Drawing.Size(28, 16);
             this.label21.TabIndex = 93;
-            this.label21.Text = "F0:";
+            this.label21.Text = "D2:";
             // 
             // label22
             // 
@@ -649,9 +641,9 @@
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label22.Location = new System.Drawing.Point(793, 67);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(26, 16);
+            this.label22.Size = new System.Drawing.Size(28, 16);
             this.label22.TabIndex = 94;
-            this.label22.Text = "F0:";
+            this.label22.Text = "D3:";
             // 
             // label23
             // 
@@ -659,9 +651,9 @@
             this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label23.Location = new System.Drawing.Point(793, 93);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(26, 16);
+            this.label23.Size = new System.Drawing.Size(28, 16);
             this.label23.TabIndex = 95;
-            this.label23.Text = "F0:";
+            this.label23.Text = "D4:";
             // 
             // label24
             // 
@@ -669,9 +661,9 @@
             this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label24.Location = new System.Drawing.Point(793, 119);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(26, 16);
+            this.label24.Size = new System.Drawing.Size(28, 16);
             this.label24.TabIndex = 96;
-            this.label24.Text = "F0:";
+            this.label24.Text = "D5:";
             // 
             // label25
             // 
@@ -679,9 +671,9 @@
             this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label25.Location = new System.Drawing.Point(793, 145);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(26, 16);
+            this.label25.Size = new System.Drawing.Size(28, 16);
             this.label25.TabIndex = 97;
-            this.label25.Text = "F0:";
+            this.label25.Text = "D6:";
             // 
             // label26
             // 
@@ -689,9 +681,9 @@
             this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label26.Location = new System.Drawing.Point(793, 171);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(26, 16);
+            this.label26.Size = new System.Drawing.Size(28, 16);
             this.label26.TabIndex = 98;
-            this.label26.Text = "F0:";
+            this.label26.Text = "D7:";
             // 
             // label27
             // 
@@ -699,9 +691,9 @@
             this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label27.Location = new System.Drawing.Point(793, 197);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(26, 16);
+            this.label27.Size = new System.Drawing.Size(28, 16);
             this.label27.TabIndex = 99;
-            this.label27.Text = "F0:";
+            this.label27.Text = "D8:";
             // 
             // textBox28
             // 
@@ -709,7 +701,6 @@
             this.textBox28.Name = "textBox28";
             this.textBox28.Size = new System.Drawing.Size(65, 20);
             this.textBox28.TabIndex = 100;
-            this.textBox28.Text = "0";
             // 
             // Form1
             // 

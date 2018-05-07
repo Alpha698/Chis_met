@@ -42,7 +42,24 @@ namespace MS
             string b1_ = textBox18.Text; double b1 = Convert.ToDouble(b1_);
             string b2_ = textBox21.Text; double b2 = Convert.ToDouble(b2_);
 
-            MessageBox.Show("Данные добавлены!");
+            double D1 = (A-B*Dt)/ (A + B * Dt); D1 = Math.Round(D1, 3);
+            textBox20.Text = D1.ToString();
+            double D2 = (Dt) / (A+B*Dt); D2 = Math.Round(D2, 3);
+            textBox22.Text = D2.ToString();
+            double D3 = (k1*Dt) / (A + B * Dt); D3 = Math.Round(D3, 3);
+            textBox23.Text = D3.ToString();
+            double D4 = (k2 * Dt) / (A + B * Dt); D4 = Math.Round(D4, 3);
+            textBox24.Text = D4.ToString();
+            double D5 = Dt; D5 = Math.Round(D5, 3);
+            textBox25.Text = D5.ToString();
+            double D6 = (C)/(C+Dt); D6 = Math.Round(D6, 3);
+            textBox26.Text = D6.ToString();
+            double D7 = (k3*Dt) / (C + Dt); D7 = Math.Round(D7, 3);
+            textBox27.Text = D7.ToString();
+            double D8 = k4/ (C + Dt); D8 = Math.Round(D8, 3);
+            textBox28.Text = D8.ToString();
+
+           // MessageBox.Show("Данные добавлены!");
 
             // ------РАССЧЕТ ТАБЛИЦЫ------
 
@@ -50,7 +67,10 @@ namespace MS
             int[] arrayi = new int[51];
             double[] arrayT = new double[51];
             double[] arrayX = new double[51];
-            double[] arrayYa = new double[51];
+            double[] arrayG = new double[51];
+            double[] arrayF = new double[51];
+            double[] arrayY = new double[51];
+            double[] arrayZ = new double[51];
 
             //Столбец i
             for (int i = 0; i < arrayi.Length; i++)
@@ -62,33 +82,66 @@ namespace MS
             for (int i = 0; i < arrayT.Length; i++, j += Dt)
             {
                 arrayT[i] = j;
-                arrayT[i] = Math.Round(arrayT[i], 3);
+                arrayT[i] = Math.Round(arrayT[i], 2);
             }
             //Столбец X
             for (int i = 0; i < arrayX.Length; i++)
             {
                 arrayX[i] = a0 + (a1 * arrayT[i]) + (a2 * Math.Pow(arrayT[i], 2)) + (a3 * Math.Pow(arrayT[i], 3)) + (a4 * Math.Pow(arrayT[i], 4));
-                arrayX[i] = Math.Round(arrayX[i], 3);
+                arrayX[i] = Math.Round(arrayX[i], 2);
             }
-            //Столбец Ya
-            //for (int i = 0; i < arrayYa.Length; i++)
-            //{
-            //    arrayYa[i] = (Yo - C0) * Math.Exp(-arrayT[i] / A) + C0 + C1 * arrayT[i] + C2 * Math.Pow(arrayT[i], 2) + C3 * Math.Pow(arrayT[i], 3) + C4 * Math.Pow(arrayT[i], 4);
-            //    arrayYa[i] = Math.Round(arrayYa[i], 4);
-            //}
+            //Столбец G
+            for (int i = 0; i < arrayG.Length; i++)
+            {
+                arrayG[i] = b0 + b1 * arrayT[i] + b2 * Math.Pow(arrayT[i], 2);
+                arrayG[i] = Math.Round(arrayG[i], 2);
+            }
+
+            /////////////////
+            arrayY[0] = Y0; arrayY[0] = Math.Round(arrayY[0], 2);
+            arrayF[0] = F0; arrayF[0] = Math.Round(arrayF[0], 2);
+            arrayZ[0] = Z0; arrayZ[0] = Math.Round(arrayZ[0], 2);
+            //Столбец Y
+            arrayY[1] = arrayY[0] + Dt * arrayF[0];
+            arrayY[1] = arrayY[0] + Dt * arrayF[0];
+            arrayY[1] = Math.Round(arrayY[1], 2);
+            arrayZ[1] = arrayZ[0] * D6 + arrayY[1] * (D7 + D8) + arrayG[1] * (-D7 - D8) + D8 * (-arrayY[0] + arrayG[0]);
+            arrayZ[1] = Math.Round(arrayZ[1], 2);
+            arrayF[1] = arrayZ[1] * arrayF[0] - D2 * arrayY[1] + D3 * arrayX[1] + D4 * arrayZ[1];
+            arrayF[1] = Math.Round(arrayF[1], 2);
+            for (int i = 2; i < arrayY.Length; i++)
+            {
+                arrayY[i] = arrayY[i-1] + Dt * arrayF[i-2];
+                arrayY[i] = Math.Round(arrayY[i], 3);
+                //arrayZ[1] = arrayZ[0] * D6 + arrayY[1] * (D7 + D8) + arrayG[i] * (-D7 - D8) + D8 * (-arrayY[0] + arrayG[i--]);
+                //arrayZ[1] = Math.Round(arrayZ[1], 2);
+                //arrayF[1] = arrayZ[1] * arrayF[0] - D2 * arrayY[1] + D3 * arrayX[1] + D4 * arrayZ[1];
+                //arrayF[1] = Math.Round(arrayF[1], 2);
+                // arrayY[i] = Math.Round(arrayY[i], 2);
+               // break;
+
+            }
+            //Столбец Z
+            for (int i = 2; i < arrayZ.Length; i++)
+            {
+                arrayZ[i] = arrayZ[i-2] * D6 + arrayY[i-1] * (D7 + D8) + arrayG[i] * (-D7 - D8) + D8 * (-arrayY[i-2] + arrayG[i-1]);
+                arrayZ[i] = Math.Round(arrayZ[i], 3);
+            }
+                //Столбец F
+                for (int i = 2; i < arrayF.Length; i++)
+            {
+                arrayF[i] = arrayZ[i-1] * arrayF[i-2] - D2 * arrayY[i-1] + D3 * arrayX[i-1] + D4 * arrayZ[i-1];
+                arrayF[i] = Math.Round(arrayF[i], 3);
+            }
+
+
 
             //Запись в таблицу
             for (int i = 0; i < 51; i++)
             {
-                dataGridView1.Rows.Add(arrayi[i], arrayT[i], arrayX[i]);//, arrayYa[i], arrayY1[i], arrayY2[i], arraydY1[i], arraydY2[i], arraysY1[i] + "%", arraysY2[i] + "%");
+                dataGridView1.Rows.Add(arrayi[i], arrayT[i], arrayX[i], arrayG[i], arrayF[i], arrayY[i], arrayZ[i]);//, arrayYa[i], arrayY1[i], arrayY2[i], arraydY1[i], arraydY2[i], arraysY1[i] + "%", arraysY2[i] + "%");
             }
         }
-
-        private void textBox22_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
 
 
         //        cartesianChart1.Series = new SeriesCollection
