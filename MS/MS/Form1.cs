@@ -7,6 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LiveCharts;
+using LiveCharts.Wpf;
+using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace MS
 {
@@ -103,91 +107,96 @@ namespace MS
             arrayZ[0] = Z0; arrayZ[0] = Math.Round(arrayZ[0], 2);
             //Столбец Y
             arrayY[1] = arrayY[0] + Dt * arrayF[0];
-            arrayY[1] = arrayY[0] + Dt * arrayF[0];
+            //arrayY[1] = arrayY[0] + Dt * arrayF[0];
             arrayY[1] = Math.Round(arrayY[1], 2);
-            arrayZ[1] = arrayZ[0] * D6 + arrayY[1] * (D7 + D8) + arrayG[1] * (-D7 - D8) + D8 * (-arrayY[0] + arrayG[0]);
+            arrayZ[1] = arrayZ[0] * D6 + arrayY[1] * (D7 + D8) + arrayG[1] * ((D7* -1) - D8) + D8 * ((arrayY[0] * -1) + arrayG[0]);
             arrayZ[1] = Math.Round(arrayZ[1], 2);
-            arrayF[1] = arrayZ[1] * arrayF[0] - D2 * arrayY[1] + D3 * arrayX[1] + D4 * arrayZ[1];
+            arrayF[1] = D1 * arrayF[0] - D2 * arrayY[1] + D3 * arrayX[1] + D4 * arrayZ[1];
             arrayF[1] = Math.Round(arrayF[1], 2);
             for (int i = 2; i < arrayY.Length; i++)
             {
-                arrayY[i] = arrayY[i-1] + Dt * arrayF[i-2];
-                arrayY[i] = Math.Round(arrayY[i], 3);
-                //arrayZ[1] = arrayZ[0] * D6 + arrayY[1] * (D7 + D8) + arrayG[i] * (-D7 - D8) + D8 * (-arrayY[0] + arrayG[i--]);
-                //arrayZ[1] = Math.Round(arrayZ[1], 2);
-                //arrayF[1] = arrayZ[1] * arrayF[0] - D2 * arrayY[1] + D3 * arrayX[1] + D4 * arrayZ[1];
-                //arrayF[1] = Math.Round(arrayF[1], 2);
-                // arrayY[i] = Math.Round(arrayY[i], 2);
-               // break;
-
-            }
-            //Столбец Z
-            for (int i = 2; i < arrayZ.Length; i++)
-            {
-                arrayZ[i] = arrayZ[i-2] * D6 + arrayY[i-1] * (D7 + D8) + arrayG[i] * (-D7 - D8) + D8 * (-arrayY[i-2] + arrayG[i-1]);
-                arrayZ[i] = Math.Round(arrayZ[i], 3);
-            }
-                //Столбец F
-                for (int i = 2; i < arrayF.Length; i++)
-            {
-                arrayF[i] = arrayZ[i-1] * arrayF[i-2] - D2 * arrayY[i-1] + D3 * arrayX[i-1] + D4 * arrayZ[i-1];
-                arrayF[i] = Math.Round(arrayF[i], 3);
-            }
+                arrayY[i] = arrayY[i-1] + Dt * arrayF[i-1];
+                arrayY[i] = Math.Round(arrayY[i], 2);
+                arrayZ[i] = arrayZ[i - 1] * D6 + arrayY[i] * (D7 + D8) + arrayG[i] * (-D7 - D8) + D8 * (-arrayY[i - 1] + arrayG[i - 1]);
+                arrayZ[i] = Math.Round(arrayZ[i], 2);
+                arrayF[i] = D1 * arrayF[i - 1] - D2 * arrayY[i] + D3 * arrayX[i] + D4 * arrayZ[i];
+                arrayF[i] = Math.Round(arrayF[i], 2);
+                // break;
 
 
+            }
+            ////Столбец Z
+            //for (int i = 2; i < arrayZ.Length; i++)
+            //{
+            //    arrayZ[i] = arrayZ[i-1] * D6 + arrayY[i] * (D7 + D8) + arrayG[i] * (-D7 - D8) + D8 * (-arrayY[i-1] + arrayG[i-1]);
+            //    arrayZ[i] = Math.Round(arrayZ[i], 2);
+            //}
+            //    //Столбец F
+            //    for (int i = 2; i < arrayF.Length; i++)
+            //{
+            //    arrayF[i] = D1 * arrayF[i-1] - D2 * arrayY[i] + D3 * arrayX[i] + D4 * arrayZ[i];
+            //    arrayF[i] = Math.Round(arrayF[i], 2);
+            //}
+            
 
             //Запись в таблицу
             for (int i = 0; i < 51; i++)
             {
                 dataGridView1.Rows.Add(arrayi[i], arrayT[i], arrayX[i], arrayG[i], arrayF[i], arrayY[i], arrayZ[i]);//, arrayYa[i], arrayY1[i], arrayY2[i], arraydY1[i], arraydY2[i], arraysY1[i] + "%", arraysY2[i] + "%");
             }
-        }
 
 
-        //        cartesianChart1.Series = new SeriesCollection
-        //            {  
-        //            new LineSeries
-        //                {
-        //                    Title = "Кривая X",
-        //                    Values = new ChartValues<double> { arrayX[0], arrayX[1], arrayX[2], arrayX[3], arrayX[4], arrayX[5], arrayX[6], arrayX[7], arrayX[8], arrayX[9], arrayX[10], arrayX[11], arrayX[12], arrayX[13], arrayX[14], arrayX[15], arrayX[16], arrayX[17], arrayX[18], arrayX[19], arrayX[20]
-        //    },
-        //                    PointGeometry = null,
-        //                    Fill = System.Windows.Media.Brushes.GhostWhite,
-        //                    Stroke = System.Windows.Media.Brushes.DarkGray
-        //},
-        //                new LineSeries
-        //                {
-        //                    Title = "Кривая Ya",
-        //                    Values = new ChartValues<double> { arrayYa[0], arrayYa[1], arrayYa[2], arrayYa[3], arrayYa[4], arrayYa[5], arrayYa[6], arrayYa[7], arrayYa[8], arrayYa[9], arrayYa[10], arrayYa[11], arrayYa[12], arrayYa[13], arrayYa[14], arrayYa[15], arrayYa[16], arrayYa[17], arrayYa[18], arrayYa[19], arrayYa[20]},
-        //                    PointGeometry = DefaultGeometries.Circle,
-        //                    PointGeometrySize = 10,
-        //                    Fill = System.Windows.Media.Brushes.GhostWhite,
-        //                    Stroke = System.Windows.Media.Brushes.Black
-        //                },
-        //                new LineSeries
-        //                {
-        //                    Title = "Кривая Y1",
-        //                    Values = new ChartValues<double> {arrayY1[0], arrayY1[1], arrayY1[2], arrayY1[3], arrayY1[4], arrayY1[5], arrayY1[6], arrayY1[7], arrayY1[8], arrayY1[9], arrayY1[10], arrayY1[11], arrayY1[12], arrayY1[13], arrayY1[14], arrayY1[15], arrayY1[16], arrayY1[17], arrayY1[18], arrayY1[19], arrayY1[20]},
-        //                    PointGeometry = DefaultGeometries.Square,
-        //                    // Fill = System.Windows.Media.Brushes.None,
-        //                    PointGeometrySize = 8,
-        //                    Fill = System.Windows.Media.Brushes.Snow,
-        //                    Stroke = System.Windows.Media.Brushes.DarkGray
-        //                },
-        //                new LineSeries
-        //                {
-        //                    Title = "Кривая Y2",
-        //                    Values = new ChartValues<double> {arrayY2[0], arrayY2[1], arrayY2[2], arrayY2[3], arrayY2[4], arrayY2[5], arrayY2[6], arrayY2[7], arrayY2[8], arrayY2[9], arrayY2[10], arrayY2[11], arrayY2[12], arrayY2[13], arrayY2[14], arrayY2[15], arrayY2[16], arrayY2[17], arrayY2[18], arrayY2[19], arrayY2[20]},
-        //                    PointGeometry = DefaultGeometries.Triangle,
-        //                    PointGeometrySize = 10,
-        //                    Fill = System.Windows.Media.Brushes.Snow,
-        //                    Stroke = System.Windows.Media.Brushes.Black
-        //                    // Fill = System.Windows.Media.Brushes.White
 
-        //                }
-       
+            cartesianChart2.Series = new SeriesCollection
+            {
+                new LineSeries
+                {
+                    Title = "Кривая X",
+                    Values = new ChartValues<double> { arrayX[0] , arrayX[1], arrayX[2], arrayX[3], arrayX[4], arrayX[5], arrayX[6], arrayX[7], arrayX[8], arrayX[9], arrayX[10], arrayX[11], arrayX[12], arrayX[13], arrayX[14], arrayX[15], arrayX[16], arrayX[17], arrayX[18], arrayX[19], arrayX[20], arrayX[21], arrayX[22],arrayX[23],arrayX[24],arrayX[25],arrayX[26],arrayX[27],arrayX[28],arrayX[29],arrayX[30],arrayX[31],arrayX[32],arrayX[33],arrayX[34],arrayX[35],arrayX[36],arrayX[37],arrayX[38],arrayX[39],arrayX[40],arrayX[41],arrayX[42],arrayX[43],arrayX[44],arrayX[45],arrayX[46],arrayX[47],arrayX[48],arrayX[49],arrayX[50] },
+                    PointGeometry = null,
+                    Fill = System.Windows.Media.Brushes.Transparent,
+                    Stroke = System.Windows.Media.Brushes.Black
+                },
+                new LineSeries
+                {
+                    Title = "Кривая Y",
+                    Values = new ChartValues<double> {arrayY[0], arrayY[1], arrayY[2], arrayY[3], arrayY[4], arrayY[5], arrayY[6], arrayY[7], arrayY[8], arrayY[9], arrayY[10], arrayY[11], arrayY[12], arrayY[13], arrayY[14], arrayY[15], arrayY[16], arrayY[17], arrayY[18], arrayY[19], arrayY[20], arrayY[21], arrayY[22], arrayY[23], arrayY[24], arrayY[25], arrayY[26], arrayY[27], arrayY[28], arrayY[29], arrayY[30], arrayY[31], arrayY[32], arrayY[33], arrayY[34], arrayY[35], arrayY[36], arrayY[37], arrayY[38], arrayY[39], arrayY[40], arrayY[41], arrayY[42], arrayY[43], arrayY[44], arrayY[45], arrayY[46], arrayY[47], arrayY[48], arrayY[49], arrayY[50]},
+                    PointGeometry = DefaultGeometries.Triangle,
+                    PointGeometrySize = 8,
+                    Fill = System.Windows.Media.Brushes.Transparent,
+                    Stroke = System.Windows.Media.Brushes.Black
+                },
+                new LineSeries
+                {
+                    Title = "Кривая G",
+                    Values = new ChartValues<double> { arrayG[0] , arrayG[1], arrayG[2], arrayG[3], arrayG[4], arrayG[5], arrayG[6], arrayG[7], arrayG[8], arrayG[9], arrayG[10], arrayG[11], arrayG[12], arrayG[13], arrayG[14], arrayG[15], arrayG[16], arrayG[17], arrayG[18], arrayG[19], arrayG[20], arrayG[21], arrayG[22], arrayG[23], arrayG[24], arrayG[25], arrayG[26], arrayG[27], arrayG[28], arrayG[29], arrayG[30], arrayG[31], arrayG[32], arrayG[33], arrayG[34], arrayG[35], arrayG[36], arrayG[37], arrayG[38], arrayG[39], arrayG[40], arrayG[41], arrayG[42], arrayG[43], arrayG[44], arrayG[45], arrayG[46], arrayG[47], arrayG[48], arrayG[49], arrayG[50] },
+                    PointGeometry = DefaultGeometries.Square,
+                    PointGeometrySize = 8,
+                    Fill = System.Windows.Media.Brushes.Transparent,
+                    Stroke = System.Windows.Media.Brushes.DarkGray
+                },
+                new LineSeries
+                {
+                    Title = "Кривая F",
+                    Values = new ChartValues<double> { arrayF[0], arrayF[1], arrayF[2], arrayF[3], arrayF[4], arrayF[5], arrayF[6], arrayF[7], arrayF[8], arrayF[9], arrayF[10], arrayF[11], arrayF[12], arrayF[13], arrayF[14], arrayF[15], arrayF[16], arrayF[17], arrayF[18], arrayF[19], arrayF[20], arrayF[21], arrayF[22], arrayF[23], arrayF[24], arrayF[25], arrayF[26], arrayF[27], arrayF[28], arrayF[29], arrayF[30], arrayF[31], arrayF[32], arrayF[33], arrayF[34], arrayF[35], arrayF[36], arrayF[37], arrayF[38], arrayF[39], arrayF[40], arrayF[41], arrayF[42], arrayF[43], arrayF[44], arrayF[45], arrayF[46], arrayF[47], arrayF[48], arrayF[49], arrayF[50]},
+                    PointGeometry = DefaultGeometries.Circle,
+                    PointGeometrySize = 8,
+                    Fill = System.Windows.Media.Brushes.Transparent,
+                    Stroke = System.Windows.Media.Brushes.Black
+                },
+                new LineSeries
+                {
+                    Title = "Кривая Z",
+                    Values = new ChartValues<double> { arrayZ[0], arrayZ[1], arrayZ[2], arrayZ[3], arrayZ[4], arrayZ[5], arrayZ[6], arrayZ[7], arrayZ[8], arrayZ[9], arrayZ[10], arrayZ[11], arrayZ[12], arrayZ[13], arrayZ[14], arrayZ[15], arrayZ[16], arrayZ[17], arrayZ[18], arrayZ[19], arrayZ[20], arrayZ[21], arrayZ[22], arrayZ[23], arrayZ[24], arrayZ[25], arrayZ[26], arrayZ[27], arrayZ[28], arrayZ[29], arrayZ[30], arrayZ[31], arrayZ[32], arrayZ[33], arrayZ[34], arrayZ[35], arrayZ[36], arrayZ[37], arrayZ[38], arrayZ[39], arrayZ[40], arrayZ[41], arrayZ[42], arrayZ[43], arrayZ[44], arrayZ[45], arrayZ[46], arrayZ[47], arrayZ[48], arrayZ[49], arrayZ[50]},
+                    PointGeometry = DefaultGeometries.Cross,
+                    PointGeometrySize = 8,
+                    Fill = System.Windows.Media.Brushes.Transparent,
+                    Stroke = System.Windows.Media.Brushes.Black
+                }
+            };
+cartesianChart2.LegendLocation = LegendLocation.Bottom;
 
-        //        };
-// cartesianChart1.LegendLocation = LegendLocation.Bottom;
+
+    }
     }
 }
