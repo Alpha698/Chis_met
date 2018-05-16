@@ -125,24 +125,11 @@ namespace MS
 
 
             }
-            ////Столбец Z
-            //for (int i = 2; i < arrayZ.Length; i++)
-            //{
-            //    arrayZ[i] = arrayZ[i-1] * D6 + arrayY[i] * (D7 + D8) + arrayG[i] * (-D7 - D8) + D8 * (-arrayY[i-1] + arrayG[i-1]);
-            //    arrayZ[i] = Math.Round(arrayZ[i], 2);
-            //}
-            //    //Столбец F
-            //    for (int i = 2; i < arrayF.Length; i++)
-            //{
-            //    arrayF[i] = D1 * arrayF[i-1] - D2 * arrayY[i] + D3 * arrayX[i] + D4 * arrayZ[i];
-            //    arrayF[i] = Math.Round(arrayF[i], 2);
-            //}
-            
-
+   
             //Запись в таблицу
             for (int i = 0; i < 51; i++)
             {
-                dataGridView1.Rows.Add(arrayi[i], arrayT[i], arrayX[i], arrayG[i], arrayF[i], arrayY[i], arrayZ[i]);//, arrayYa[i], arrayY1[i], arrayY2[i], arraydY1[i], arraydY2[i], arraysY1[i] + "%", arraysY2[i] + "%");
+                dataGridView1.Rows.Add(arrayi[i], arrayT[i], arrayX[i], arrayG[i], arrayF[i], arrayY[i], arrayZ[i]);
             }
 
 
@@ -194,7 +181,7 @@ namespace MS
                     Stroke = System.Windows.Media.Brushes.Black
                 }
             };
-cartesianChart2.LegendLocation = LegendLocation.Bottom;
+        cartesianChart2.LegendLocation = LegendLocation.Bottom;
 
 
     }
