@@ -16,7 +16,6 @@ namespace MS
 {
     public partial class Form1 : Form
     {
-        
         public Form1()
         {
             InitializeComponent();
@@ -62,7 +61,6 @@ namespace MS
             textBox27.Text = D7.ToString();
             double D8 = k4/ (C + Dt); D8 = Math.Round(D8, 3);
             textBox28.Text = D8.ToString();
-
            // MessageBox.Show("Данные добавлены!");
 
             // ------РАССЧЕТ ТАБЛИЦЫ------
@@ -100,7 +98,6 @@ namespace MS
                 arrayG[i] = b0 + b1 * arrayT[i] + b2 * Math.Pow(arrayT[i], 2);
                 arrayG[i] = Math.Round(arrayG[i], 2);
             }
-
             /////////////////
             arrayY[0] = Y0; arrayY[0] = Math.Round(arrayY[0], 2);
             arrayF[0] = F0; arrayF[0] = Math.Round(arrayF[0], 2);
@@ -123,17 +120,13 @@ namespace MS
                 arrayF[i] = Math.Round(arrayF[i], 2);
                 // break;
 
-
             }
-   
-            //Запись в таблицу
+               //Запись в таблицу
             for (int i = 0; i < 51; i++)
             {
                 dataGridView1.Rows.Add(arrayi[i], arrayT[i], arrayX[i], arrayG[i], arrayF[i], arrayY[i], arrayZ[i]);
             }
-
-
-
+            
             cartesianChart2.Series = new SeriesCollection
             {
                 new LineSeries
@@ -182,7 +175,6 @@ namespace MS
                 }
             };
         cartesianChart2.LegendLocation = LegendLocation.Bottom;
-
 
     }
     }
